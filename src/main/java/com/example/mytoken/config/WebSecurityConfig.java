@@ -31,14 +31,16 @@ public class WebSecurityConfig {
         http.csrf(csrf->csrf.disable())
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/generate-token",
-                        "user/**",
-                        "user/*",
-                        "/user/signup",
-                        "/queue/get_queue_by_token")
-                .permitAll()
-                .anyRequest().authenticated()
-        )
+    .requestMatchers(
+        "/", 
+        "/health", 
+        "/auth/generate-token",
+        "/user/**",
+        "/user/*",
+        "/queue/get_queue_by_token"
+    ).permitAll()
+    .anyRequest().authenticated()
+)
                 .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter,UsernamePasswordAuthenticationFilter.class);
         return http.build();
