@@ -1,0 +1,3 @@
+-- In calender showing online appointment booking user list
+
+- While creating a user default subscription is 1 so trial period is 30 days and add it's entry in subscription table

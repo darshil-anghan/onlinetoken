@@ -1,0 +1,2113 @@
+{
+	"info": {
+		"_postman_id": "0497516c-a57e-4c31-aa1d-19f2f0b43208",
+		"name": "mytoken",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43153442"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "SignUp",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "userPayload",
+									"value": "{\"email\":\"userone@email.com\",\"password\":\"Darsh054\",\"type\":\"Organization\",\"isAdmin\":\"true\"}",
+									"contentType": "application/json",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}user/signup",
+							"host": [
+								"{{BASE_URL}}user"
+							],
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OTP Verification",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n           \"userId\": 5,\n           \"otpId\": 5,\n           \"otp\": \"03b4a2b0611a4b2f\"\n         }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}user/otp_verification",
+							"host": [
+								"{{BASE_URL}}user"
+							],
+							"path": [
+								"otp_verification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Old Password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n           \"email\": \"user@example.com\",\n           \"oldPassword\": \"NewPassword123\",\n           \"newPassword\": \"Password123\"\n         }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}user/reset_password",
+							"host": [
+								"{{BASE_URL}}user"
+							],
+							"path": [
+								"reset_password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "user@example.com",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}user/forgot_password",
+							"host": [
+								"{{BASE_URL}}user"
+							],
+							"path": [
+								"forgot_password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set password(Forgot flow)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n           \"email\": \"user@example.com\",\n           \"userId\": 1,\n           \"otpId\": 1,\n           \"otp\": \"582694\",\n           \"newPassword\": \"NewPassword123\"\n         }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}user/reset_password_with_otp",
+							"host": [
+								"{{BASE_URL}}user"
+							],
+							"path": [
+								"reset_password_with_otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignIn (Generate Token)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"user11@example.com\", \"password\":\"Password123\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}auth/generate-token",
+							"host": [
+								"{{BASE_URL}}auth"
+							],
+							"path": [
+								"generate-token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Details (Setting)",
+			"item": [
+				{
+					"name": "Fetch User Details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AUTHTOKEN}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}auth/user",
+							"host": [
+								"{{BASE_URL}}auth"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Details",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AUTHTOKEN}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n           \"type\": \"Organization\",\n           \"organizationName\": \"Your Organization Name\",\n           \"bio\": \"Short Bio\",\n           \"contactCode\": \"Code\",\n           \"phoneNumber\": \"1234567890\",\n           \"whatsappNumber\": \"0987654321\",\n           \"email\": \"user11@example.com\",\n           \"location\": \"Location Info\",\n           \"facebookLink\": \"https://facebook.com\",\n           \"instagramLink\": \"https://instagram.com\",\n           \"websiteLink\": \"https://yourwebsite.com\",\n           \"twitterLink\": \"https://twitter.com\",\n           \"linkedinLink\": \"https://linkedin.com\",\n           \"address1\": \"Address Line 1\",\n           \"address2\": \"Address Line 2\",\n           \"city\": \"City\",\n           \"state\": \"State\",\n           \"country\": \"Country\",\n           \"pincode\": \"123456\"\n         }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}auth/user",
+							"host": [
+								"{{BASE_URL}}auth"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Queue",
+			"item": [
+				{
+					"name": "Add New Queue",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <YOUR_TOKEN>"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Main Queue\",\n    \"prefix\": \"MQ\",\n    \"description\": \"Main queue for general service\",\n    \"noOfCustomer\": 100,\n    \"avgServiceDuration\": 5\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}queue",
+							"host": [
+								"{{BASE_URL}}queue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Queue",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <YOUR_TOKEN>",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"Updated Queue Name\",\n    \"prefix\": \"UQ\",\n    \"description\": \"Updated queue description\",\n    \"noOfCustomer\": 50,\n    \"avgServiceDuration\": 10\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}queue",
+							"host": [
+								"{{BASE_URL}}queue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Queue to User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <YOUR_TOKEN>",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}queue/assign_role?userId=2&queueId=1",
+							"host": [
+								"{{BASE_URL}}queue"
+							],
+							"path": [
+								"assign_role"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "2"
+								},
+								{
+									"key": "queueId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch All Queue for Admin Only",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <YOUR_TOKEN>",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}queue/get_all",
+							"host": [
+								"{{BASE_URL}}queue"
+							],
+							"path": [
+								"get_all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Assigned Queue Fetched",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}queue/get_queue_list?userId=2",
+							"host": [
+								"{{BASE_URL}}queue"
+							],
+							"path": [
+								"get_queue_list"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Queue Active or Inactive",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTFAZXhhbXBsZS5jb20iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlzQWRtaW4iOnRydWUsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNzQ2MDk3MTIxLCJleHAiOjE3NDY0NTcxMjF9.aZiZ_cpYzUtbiAqDQux1ektKqObJPe4rkLG-J0j81lc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer YOUR_JWT_TOKEN",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "queueId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "isActive",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}queue/queue_status",
+							"host": [
+								"{{BASE_URL}}queue"
+							],
+							"path": [
+								"queue_status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Active Counter In dashboard",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTFAZXhhbXBsZS5jb20iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlzQWRtaW4iOnRydWUsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNzQ2MDk3MTIxLCJleHAiOjE3NDY0NTcxMjF9.aZiZ_cpYzUtbiAqDQux1ektKqObJPe4rkLG-J0j81lc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer YOUR_JWT_TOKEN",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "queueId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "noOfCounter",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}queue/active_counter",
+							"host": [
+								"{{BASE_URL}}queue"
+							],
+							"path": [
+								"active_counter"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Queue Session",
+			"item": [
+				{
+					"name": "Create a Queue Session",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n      \"sessionName\": \"Morning\",\n      \"startTime\": \"09:00\",\n      \"endTime\": \"12:00\",\n      \"dayOfWeek\": \"SUNDAY\"\n    },\n    {\n      \"sessionName\": \"Evening\",\n      \"startTime\": \"17:00\",\n      \"endTime\": \"20:00\",\n      \"dayOfWeek\": \"SUNDAY\"\n    }\n  ]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}queue/session?queueId=1",
+							"host": [
+								"{{BASE_URL}}queue"
+							],
+							"path": [
+								"session"
+							],
+							"query": [
+								{
+									"key": "queueId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Queue Session",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sessionName\": \"Updated Session\",\n    \"startTime\": \"10:00\",\n    \"endTime\": \"13:00\",\n    \"dayOfWeek\": \"MONDAY\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}queue/session?sessionId=1",
+							"host": [
+								"{{BASE_URL}}queue"
+							],
+							"path": [
+								"session"
+							],
+							"query": [
+								{
+									"key": "sessionId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Queue Session",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}queue/session?sessionId=1",
+							"host": [
+								"{{BASE_URL}}queue"
+							],
+							"path": [
+								"session"
+							],
+							"query": [
+								{
+									"key": "sessionId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Queue Session",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}queue/session?queueId=1",
+							"host": [
+								"{{BASE_URL}}queue"
+							],
+							"path": [
+								"session"
+							],
+							"query": [
+								{
+									"key": "queueId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Holiday",
+			"item": [
+				{
+					"name": "Add Holiday",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"description\": \"Independence Day\",\n  \"date\": \"2025-08-15\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}holiday?queueId=1",
+							"host": [
+								"{{BASE_URL}}holiday"
+							],
+							"query": [
+								{
+									"key": "queueId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Holiday",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"description\": \"Updated Independence Day\",\n  \"date\": \"2025-08-16\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}holiday?holidayId=1",
+							"host": [
+								"{{BASE_URL}}holiday"
+							],
+							"query": [
+								{
+									"key": "holidayId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Holiday",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}holiday?holidayId=5",
+							"host": [
+								"{{BASE_URL}}holiday"
+							],
+							"query": [
+								{
+									"key": "holidayId",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Holiday Details By Month",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}holiday/monthly?queueId=1&year=2025&month=8",
+							"host": [
+								"{{BASE_URL}}holiday"
+							],
+							"path": [
+								"monthly"
+							],
+							"query": [
+								{
+									"key": "queueId",
+									"value": "1"
+								},
+								{
+									"key": "year",
+									"value": "2025"
+								},
+								{
+									"key": "month",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Holiday Details By Year",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}holiday/yearly?queueId=1&year=2025",
+							"host": [
+								"{{BASE_URL}}holiday"
+							],
+							"path": [
+								"yearly"
+							],
+							"query": [
+								{
+									"key": "queueId",
+									"value": "1"
+								},
+								{
+									"key": "year",
+									"value": "2025"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Booking Portal",
+			"item": [
+				{
+					"name": "Add Booking Portal If not exist",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n           \"us\": \"User Support Info\",\n           \"disclaimer\": \"This is the disclaimer text.\",\n           \"websiteUrl\": \"http://example.com\",\n           \"showWaitlist\": true,\n           \"portalUrl\": \"http://portal.example.com\",\n           \"queueId\": 1\n         }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}booking-portal",
+							"host": [
+								"{{BASE_URL}}booking-portal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Booking Portal Info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n           \"us\": \"Updated User Support Info\",\n           \"disclaimer\": \"Updated disclaimer text.\",\n           \"websiteUrl\": \"http://updatedexample.com\",\n           \"showWaitlist\": false,\n           \"portalUrl\": \"http://updatedportal.example.com\",\n           \"queueId\": 1\n         }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}booking-portal/1",
+							"host": [
+								"{{BASE_URL}}booking-portal"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetch Booking Portal Info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}booking-portal/queue/1",
+							"host": [
+								"{{BASE_URL}}booking-portal"
+							],
+							"path": [
+								"queue",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "In case of if want to delete portal",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}booking-portal/1",
+							"host": [
+								"{{BASE_URL}}booking-portal"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Portal Name Availability",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTFAZXhhbXBsZS5jb20iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlzQWRtaW4iOnRydWUsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNzQ2MDk3MTIxLCJleHAiOjE3NDY0NTcxMjF9.aZiZ_cpYzUtbiAqDQux1ektKqObJPe4rkLG-J0j81lc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}booking-portal/queue/portal_domain?domain=http://updatedportal.example.com",
+							"host": [
+								"{{BASE_URL}}booking-portal"
+							],
+							"path": [
+								"queue",
+								"portal_domain"
+							],
+							"query": [
+								{
+									"key": "domain",
+									"value": "http://updatedportal.example.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Toggle WaitList Status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTFAZXhhbXBsZS5jb20iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlzQWRtaW4iOnRydWUsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNzQ2MDk3MTIxLCJleHAiOjE3NDY0NTcxMjF9.aZiZ_cpYzUtbiAqDQux1ektKqObJPe4rkLG-J0j81lc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}booking-portal/queue/show_waitlist?queueId=1&show=false",
+							"host": [
+								"{{BASE_URL}}booking-portal"
+							],
+							"path": [
+								"queue",
+								"show_waitlist"
+							],
+							"query": [
+								{
+									"key": "queueId",
+									"value": "1"
+								},
+								{
+									"key": "show",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Setting -> WalkIn/Appointment",
+			"item": [
+				{
+					"name": "Status",
+					"item": [
+						{
+							"name": "Start Appointment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AUTHTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"queueId\": 1,\n    \"tokenId\": 2,\n    \"serviceTime\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}patient_queue/start_appointment",
+									"host": [
+										"{{BASE_URL}}patient_queue"
+									],
+									"path": [
+										"start_appointment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cancel Appointment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AUTHTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{BASE_URL}}patient_queue/cancel_appointment?queueId=1&tokenId=11",
+									"host": [
+										"{{BASE_URL}}patient_queue"
+									],
+									"path": [
+										"cancel_appointment"
+									],
+									"query": [
+										{
+											"key": "queueId",
+											"value": "1"
+										},
+										{
+											"key": "tokenId",
+											"value": "11"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Hold Appointment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AUTHTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTFAZXhhbXBsZS5jb20iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlzQWRtaW4iOnRydWUsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNzQ5NDUxMzk3LCJleHAiOjE3NDk4MTEzOTd9.uzefFKl9A44ydILsuqvg14_nZtuf_xsAB7ZPQP4I_w8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}patient_queue/hold_appointment?queueId=1&tokenId=2",
+									"host": [
+										"{{BASE_URL}}patient_queue"
+									],
+									"path": [
+										"hold_appointment"
+									],
+									"query": [
+										{
+											"key": "queueId",
+											"value": "1"
+										},
+										{
+											"key": "tokenId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Complete Appointment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AUTHTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}patient_queue/complete_appointment?queueId=1&tokenId=2",
+									"host": [
+										"{{BASE_URL}}patient_queue"
+									],
+									"path": [
+										"complete_appointment"
+									],
+									"query": [
+										{
+											"key": "queueId",
+											"value": "1"
+										},
+										{
+											"key": "tokenId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add More Time in Appointment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AUTHTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"queueId\": 1,\n    \"tokenId\": 2,\n    \"serviceTime\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}patient_queue/add_time",
+									"host": [
+										"{{BASE_URL}}patient_queue"
+									],
+									"path": [
+										"add_time"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Token Announcement",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AUTHTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}patient_queue/token_announcement?queueId=1&tokenId=2",
+									"host": [
+										"{{BASE_URL}}patient_queue"
+									],
+									"path": [
+										"token_announcement"
+									],
+									"query": [
+										{
+											"key": "queueId",
+											"value": "1"
+										},
+										{
+											"key": "tokenId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Clear Queue",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTFAZXhhbXBsZS5jb20iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlzQWRtaW4iOnRydWUsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNzQ5NDUxMzk3LCJleHAiOjE3NDk4MTEzOTd9.uzefFKl9A44ydILsuqvg14_nZtuf_xsAB7ZPQP4I_w8"
+									}
+								],
+								"url": {
+									"raw": "{{BASE_URL}}patient_queue/clear_queue?queueId=1",
+									"host": [
+										"{{BASE_URL}}patient_queue"
+									],
+									"path": [
+										"clear_queue"
+									],
+									"query": [
+										{
+											"key": "queueId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Service Details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer YOUR_JWT_TOKEN",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{BASE_URL}}setting/service/1",
+							"host": [
+								"{{BASE_URL}}setting"
+							],
+							"path": [
+								"service",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Service Details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTFAZXhhbXBsZS5jb20iLCJyb2xlIjoiUk9MRV9BRE1JTiIsImlzQWRtaW4iOnRydWUsImF1dGhvcml0aWVzIjpbIlJPTEVfQURNSU4iXSwiaWF0IjoxNzQ2MDk3MTIxLCJleHAiOjE3NDY0NTcxMjF9.aZiZ_cpYzUtbiAqDQux1ektKqObJPe4rkLG-J0j81lc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer YOUR_JWT_TOKEN",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"onlineCheckIn\": true,\n    \"onlineWaitTimeLow\": 5,\n    \"onlineWaitTimeHigh\": 15,\n    \"onlineOtpVerification\": false,\n    \"onlineNotifyUser\": true,\n    \"onlineCheckInMobile\": true,\n    \"onlineCheckInEmail\": false,\n\n    \"appointmentEnable\": true,\n    \"appointmentMaxFutureDays\": 7,\n    \"appointmentNotifyUsers\": true,\n    \"appointmentOtpVerification\": true,\n    \"appointmentAptReminder\": true,\n    \"appointmentSms\": false,\n    \"appointmentMail\": true,\n\n    \"advanceMarketplace\": false,\n    \"advanceDynamicCapacity\": true,\n    \"advanceBuildCustomerData\": false,\n    \"advanceBusinessNotification\": true,\n    \"advanceBreakHour\": false,\n\n    \"createdBy\": 1\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}setting/service/1",
+							"host": [
+								"{{BASE_URL}}setting"
+							],
+							"path": [
+								"service",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Appointment",
+			"item": [
+				{
+					"name": "Online",
+					"item": [
+						{
+							"name": "Verify User Queue using OTP",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AUTHTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"otpId\": 21,\n    \"otp\": \"537621\",\n    \"patientId\": 22\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}patient_queue_otp/verify",
+									"host": [
+										"{{BASE_URL}}patient_queue_otp"
+									],
+									"path": [
+										"verify"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Online Appointment Book With time Slot",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AUTHTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"countryCode\": \"+91\",\n    \"mobileNumber\": \"9876543210\",\n    \"email\": \"john.doe@example.com\",\n    \"notes\": \"Prefers morning slot\",\n    \"appointmentType\": \"Online\",\n    \"onlineBookingSlot\": 1746800400000,\n    \"appointmentBookingDate\": \"2025-05-09\" ,\n    \"queueId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}patient_queue",
+									"host": [
+										"{{BASE_URL}}patient_queue"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "WalkIn",
+					"item": [
+						{
+							"name": "WalkIn online booking",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AUTHTOKEN}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstName\": \"Krupa Nidhi\",\n    \"lastName\": \"Doe\",\n    \"countryCode\": \"+91\",\n    \"mobileNumber\": \"9876543210\",\n    \"email\": \"john.doe@example.com\",\n    \"notes\": \"Prefers morning slot\",\n    \"appointmentType\": \"WalkIn\",\n    \"onlineBookingSlot\": 1746800400000,\n    \"appointmentBookingDate\": \"2025-05-09\" ,\n    \"queueId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}patient_queue",
+									"host": [
+										"{{BASE_URL}}patient_queue"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Fetch Appointment List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}patient_queue?queueId=1&status=Processing",
+							"host": [
+								"{{BASE_URL}}patient_queue"
+							],
+							"query": [
+								{
+									"key": "queueId",
+									"value": "1"
+								},
+								{
+									"key": "status",
+									"value": "Processing"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sharing Screen Flow",
+			"item": [
+				{
+					"name": "Create Link Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}queue/generate_link?queueId=1",
+							"host": [
+								"{{BASE_URL}}queue"
+							],
+							"path": [
+								"generate_link"
+							],
+							"query": [
+								{
+									"key": "queueId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch queue details based on Link Token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}queue/get_queue_by_token?token=Af8-iSX-bsh",
+							"host": [
+								"{{BASE_URL}}queue"
+							],
+							"path": [
+								"get_queue_by_token"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "Af8-iSX-bsh"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Subscription",
+			"item": [
+				{
+					"name": "For User(Purchase)",
+					"item": [
+						{
+							"name": "Purchase Subscription",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AUTHTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": 1,\n    \"subscriptionId\": 1,\n    \"amount\": 1400\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}user-subscription",
+									"host": [
+										"{{BASE_URL}}user-subscription"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Current Plan and Replace To new Plan",
+							"protocolProfileBehavior": {
+								"protocolVersion": "auto"
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AUTHTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\": 1,\n    \"subscriptionId\": 1,\n    \"amount\": 1400\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}user-subscription/change-subscription?existingSubscriptionId=1",
+									"host": [
+										"{{BASE_URL}}user-subscription"
+									],
+									"path": [
+										"change-subscription"
+									],
+									"query": [
+										{
+											"key": "existingSubscriptionId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Change Subscription status from admin Side",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{AUTHTOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}user-subscription/status?userId=1&subscriptionId=1&status=false",
+									"host": [
+										"{{BASE_URL}}user-subscription"
+									],
+									"path": [
+										"status"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "1"
+										},
+										{
+											"key": "subscriptionId",
+											"value": "1"
+										},
+										{
+											"key": "status",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Add new Subscription",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Trial Plan 14-Days\",\n    \"description\": \"This plan add for only testing purpose\",\n    \"price\": 1400,\n    \"duration\": 14,\n    \"maxUsers\": 10,\n    \"maxQueues\": 10 \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}subscription",
+							"host": [
+								"{{BASE_URL}}subscription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit subscription details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Trial Plan 14-Days\",\n    \"description\": \"This plan add for only testing purpose\",\n    \"price\": 1400,\n    \"duration\": 14,\n    \"maxUsers\": 10,\n    \"maxQueues\": 10 \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}subscription?subscriptionId=1",
+							"host": [
+								"{{BASE_URL}}subscription"
+							],
+							"query": [
+								{
+									"key": "subscriptionId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all subscriptions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}subscription",
+							"host": [
+								"{{BASE_URL}}subscription"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Particular Subscription Detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTHTOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}subscription?subscriptionId=2",
+							"host": [
+								"{{BASE_URL}}subscription"
+							],
+							"query": [
+								{
+									"key": "subscriptionId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Fetch Slote based on Day (Appointment book section)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{AUTHTOKEN}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"queueId\": 1,\n    \"date\": \"2025-05-04\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}slots/available",
+					"host": [
+						"{{BASE_URL}}slots"
+					],
+					"path": [
+						"available"
+					],
+					"query": [
+						{
+							"key": "queueId",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "date",
+							"value": "2025-05-04",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "AUTHTOKEN",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
