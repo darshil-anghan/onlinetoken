@@ -1,8 +1,9 @@
+# Use OpenJDK 17 base image
 FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-COPY target/myapp-0.0.1-SNAPSHOT.jar app.jar
+COPY build/libs/*.jar app.jar
 
 EXPOSE 3013
 
